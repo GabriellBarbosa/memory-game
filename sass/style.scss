@@ -31,7 +31,7 @@ img {
   .memory_card {
     flex-shrink: 0;
     margin: 10px;
-    min-width: 120px;
+    min-width: 100px;
     width: calc(16.666% - 20px);
     height: calc(33.333% - 20px);
     position: relative;
@@ -43,12 +43,6 @@ img {
     cursor: pointer;
     &:active {
       transform: scale(0.97);
-    }
-    @media screen and (max-width: 768px) {
-      flex-shrink: 0;
-      margin: 10px;
-      width: calc(25% - 20px);
-      height: calc(33.333% - 20px);
     }
     .front_face,
     .back_face {
