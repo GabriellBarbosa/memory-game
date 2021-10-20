@@ -31,7 +31,7 @@ img {
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  width: 70%;
+  width: 70vw;
   height: 95vh;
   -webkit-perspective: 1000px;
           perspective: 1000px;
@@ -39,7 +39,7 @@ img {
 
 @media screen and (max-width: 1220px) {
   .memory_game {
-    width: 100%;
+    width: 100vw;
   }
 }
 
@@ -47,7 +47,6 @@ img {
   -ms-flex-negative: 0;
       flex-shrink: 0;
   margin: 10px;
-  min-width: 100px;
   width: calc(16.666% - 20px);
   height: calc(33.333% - 20px);
   position: relative;

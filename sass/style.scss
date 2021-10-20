@@ -22,16 +22,15 @@ img {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  width: 70%;
+  width: 70vw;
   height: 95vh;
   perspective: 1000px;
   @media screen and (max-width: 1220px) {
-    width: 100%;
+    width: 100vw
   }
   .memory_card {
     flex-shrink: 0;
     margin: 10px;
-    min-width: 100px;
     width: calc(16.666% - 20px);
     height: calc(33.333% - 20px);
     position: relative;
