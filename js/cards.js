@@ -1,9 +1,11 @@
 class Cards {
-  constructor(cardsClass) {
+  constructor(cardsClass, modalClass) {
+    this.modal = document.querySelector(modalClass);
     this.cards = document.querySelectorAll(cardsClass);
     this.cardIsClicked = false;
     this.firstCard;
     this.secondCard;
+    this.userAttempts = 0;
   }
 
   reset = () => {
@@ -38,12 +40,45 @@ class Cards {
     this.reset();
   };
 
+  gameOverMessages = () => {
+    const modalElements = {
+      title: this.modal.querySelector('h2'),
+      message: this.modal.querySelector('p'),
+      record: this.modal.querySelector('span')
+    }
+
+    const record = window.localStorage.getItem('record');
+    if(!record || this.userAttempts < record) {
+      window.localStorage.setItem('record', this.userAttempts);
+      modalElements.title.innerText = 'Parabéns, você bateu o seu recorde!!';
+      modalElements.record.innerText = `Recorde: ${this.userAttempts}`;
+    } else {
+      modalElements.title.innerText = 'Game Over, tente novamente!';
+      modalElements.record.innerText = `Recorde: ${record}`;
+    }
+
+    modalElements.message.innerText = `${this.userAttempts} tentativas`;
+  }
+
+  gameOver = () => {
+    const flipped = [...this.cards].filter((card) => {
+      return card.classList.contains('flip');
+    });
+
+    if(flipped.length === [...this.cards].length) {
+      this.gameOverMessages();
+      this.modal.classList.add('active');
+    }
+  }
+
   // verifica se o dataset são iguais
   handleCardsMatch = () => {
     if (this.secondCard && !this.cardClicked) {
+      this.userAttempts += 1;
       const datasetMatch = this.firstCard.dataset.card === this.secondCard.dataset.card;
       if (datasetMatch) {
         this.match();
+        this.gameOver();
       } else {
         this.noMatch();
       }
@@ -78,11 +113,28 @@ class Cards {
     card.style.order = String(randomNumber);
   };
 
+  restart = () => {
+    [...this.cards].forEach((card) => {
+      card.classList.remove('flip');
+      this.shuffle(card);
+      this.addClickEvent(card);
+    });
+    this.modal.classList.remove('active');
+    this.userAttempts = 0;
+  }
+
+  addEvents = () => {
+    const restartButton = this.modal.querySelector('button');
+    restartButton.addEventListener('click', this.restart);
+  }
+
   bindEvents = () => {
     this.flip = this.flip.bind(this);
+    this.restart = this.restart.bind(this);
   }
 
   execute = () => {
+    this.addEvents();
     this.bindEvents();
     [...this.cards].forEach((card) => {
       this.shuffle(card);

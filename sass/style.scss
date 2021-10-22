@@ -68,7 +68,7 @@ img {
   display: none;
   width: 100vw;
   height: 100vh;
-  z-index: 5;
+  z-index: 4;
   background-color: #fff;
   &.active {
     display: flex;
@@ -103,5 +103,65 @@ img {
   }
   100% {
     transform: rotate(-110deg);
+  }
+}
+
+.modal-bg {
+  display: none;
+  position: fixed;
+  inset: 0 0 0 0;
+  z-index: 3;
+  &.active {
+    display: grid;
+    place-items: center;
+    animation: fadeIn 0.2s forwards;
+  }
+  .modal {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 40px;
+    font-family: sans-serif;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h2 {
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 36px;
+      margin-bottom: 36px;
+    }
+    p {
+      font-size: 18px;
+      line-height: 36px;
+    }
+    span {
+      font-size: 14px;
+      line-height: 21px;
+      margin-bottom: 21px;
+      color: #686675;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #87e;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    background-color: transparent;
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.5);
   }
 }
