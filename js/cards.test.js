@@ -6,9 +6,9 @@ import { Cards } from "./cards";
 
 jest.useFakeTimers();
 
-let spy;
+let documentSpy;
 beforeAll(() => {
-    spy = jest.spyOn(document, 'querySelectorAll');
+    documentSpy = jest.spyOn(document, 'querySelectorAll');
 });
 
 describe('Cards class', () => {
@@ -32,13 +32,13 @@ describe('Cards class', () => {
         <div class="memory_card" data-card="hulk"></div>
         <div class="memory_card" data-card="hulk"></div>
         `;
-        spy.mockReturnValue(mockElement);
+        documentSpy.mockReturnValue(mockElement);
         const cardsNodeList = mockElement.querySelectorAll('.memory_card');
         const modalElement = mockElement.querySelector('.modal-bg')
         memoryGame = new Cards(cardsNodeList, modalElement);
         const initMemoryGame = jest.fn(memoryGame.execute);
         initMemoryGame();
-    })
+    });
 
     it('should have four cards in this test', () => {
         expect(Array.from(memoryGame.cards).length).toBe(4);
@@ -48,7 +48,7 @@ describe('Cards class', () => {
         expect(memoryGame.modal).toBeTruthy();
     });
 
-    it('adds "flip" to the classList of the first two cards clicked', () => {
+    it('should add "flip" to the classList of the first two cards clicked', () => {
         const firstCard = memoryGame.cards[0];
         const secondCard = memoryGame.cards[3];
 
