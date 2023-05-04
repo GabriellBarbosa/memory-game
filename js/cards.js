@@ -1,7 +1,9 @@
+// MemoryGame
 class Cards {
-  constructor(cardsClass, modalClass) {
-    this.modal = document.querySelector(modalClass);
-    this.cards = document.querySelectorAll(cardsClass);
+  // cardsNodeList
+  constructor(aNodeList, aHtmlElement) {
+    this.cards = aNodeList;
+    this.modal = aHtmlElement;
     this.cardIsClicked = false;
     this.firstCard;
     this.secondCard;

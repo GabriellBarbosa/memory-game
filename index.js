@@ -15,5 +15,7 @@ import { debounce } from './js/debounce.js';
   }
   window.addEventListener('resize', debounce(handleScreenWidth, 200));
 
-const cards = new Cards('.memory_card', '.modal-bg');
+const cardsNodeList = document.querySelectorAll('.memory_card');
+const modalElement = document.querySelector('.modal-bg')
+const cards = new Cards(cardsNodeList, modalElement);
 cards.execute();
