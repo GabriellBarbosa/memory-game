@@ -4,5 +4,8 @@
   },
   "scripts": {
     "test": "jest"
+  },
+  "dependencies": {
+    "jest-environment-jsdom": "^29.5.0"
   }
 }
