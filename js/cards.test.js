@@ -46,7 +46,7 @@ describe('Cards class', () => {
         initMemoryGame();
     });
 
-    it('should have four cards in this test', () => {
+    it('should have four cards', () => {
         expect(Array.from(cards).length).toBe(4);
     });
 
@@ -101,5 +101,19 @@ describe('Cards class', () => {
 
         expect(Array.from(spiderCard1.classList)).toContain('flip');
         expect(Array.from(spiderCard2.classList)).toContain('flip');
+    });
+
+    it('should open gameOver modal when all cards are flipped', () => {
+        const spiderCard1 = cards[0];
+        const spiderCard2 = cards[1];
+        const hulkCard1 = cards[2];
+        const hulkCard2 = cards[3];
+
+        spiderCard1.click();
+        spiderCard2.click();
+        hulkCard1.click();
+        hulkCard2.click();
+
+        expect(Array.from(modal.classList)).toContain('active');
     });
 });
