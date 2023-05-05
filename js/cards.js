@@ -10,13 +10,23 @@ class Cards {
     this.userAttempts = 0;
   }
 
-  init = () => {
+  init() {
     this.addEvents();
     this.bindEvents();
     [...this.cards].forEach((card) => {
       this.shuffle(card);
       card.addEventListener('click', this.flip);
     });
+  }
+
+  addEvents() {
+    const restartButton = this.modal.querySelector('button');
+    restartButton.addEventListener('click', this.restart);
+  }
+
+  bindEvents() {
+    this.flip = this.flip.bind(this);
+    this.restart = this.restart.bind(this);
   }
 
   reset = () => {
@@ -133,18 +143,6 @@ class Cards {
     this.modal.classList.remove('active');
     this.userAttempts = 0;
   }
-
-  addEvents = () => {
-    const restartButton = this.modal.querySelector('button');
-    restartButton.addEventListener('click', this.restart);
-  }
-
-  bindEvents = () => {
-    this.flip = this.flip.bind(this);
-    this.restart = this.restart.bind(this);
-  }
-
-
 }
 
 export { Cards };
