@@ -19,6 +19,7 @@ cards should be private (try to test with cardsNodeList)
 describe('Cards class', () => {
     let cards;
     let modal;
+    let memoryGame;
     beforeEach(() => {
         const mockElement = document.createElement('section');
         mockElement.innerHTML = 
@@ -41,7 +42,7 @@ describe('Cards class', () => {
         documentSpy.mockReturnValue(mockElement);
         cards = mockElement.querySelectorAll('.memory_card');
         modal = mockElement.querySelector('.modal-bg')
-        const memoryGame = new Cards(cards, modal);
+        memoryGame = new Cards(cards, modal);
         const initMemoryGame = jest.fn(memoryGame.execute);
         initMemoryGame();
     });
@@ -115,5 +116,23 @@ describe('Cards class', () => {
         hulkCard2.click();
 
         expect(Array.from(modal.classList)).toContain('active');
+    });
+
+    it('should add 1 attempt for each two cards flipped', () => {
+        const spiderCard = cards[0];
+        const hulkCard = cards[2];
+
+        spiderCard.click();
+        hulkCard.click();
+
+        jest.advanceTimersByTime(1200);
+        spiderCard.click();
+        hulkCard.click();
+
+        jest.advanceTimersByTime(1200);
+        spiderCard.click();
+        hulkCard.click();
+
+        expect(memoryGame.userAttempts).toBe(3);
     });
 });
