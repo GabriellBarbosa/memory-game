@@ -17,7 +17,8 @@ cards should be private (try to test with cardsNodeList)
 */
 
 describe('Cards class', () => {
-    let memoryGame;
+    let cards;
+    let modal;
     beforeEach(() => {
         const mockElement = document.createElement('section');
         mockElement.innerHTML = 
@@ -38,24 +39,24 @@ describe('Cards class', () => {
         <div class="memory_card" data-card="hulk"></div>
         `;
         documentSpy.mockReturnValue(mockElement);
-        const cardsNodeList = mockElement.querySelectorAll('.memory_card');
-        const modalElement = mockElement.querySelector('.modal-bg')
-        memoryGame = new Cards(cardsNodeList, modalElement);
+        cards = mockElement.querySelectorAll('.memory_card');
+        modal = mockElement.querySelector('.modal-bg')
+        const memoryGame = new Cards(cards, modal);
         const initMemoryGame = jest.fn(memoryGame.execute);
         initMemoryGame();
     });
 
     it('should have four cards in this test', () => {
-        expect(Array.from(memoryGame.cards).length).toBe(4);
+        expect(Array.from(cards).length).toBe(4);
     });
 
     it('should have a modal element', () => {
-        expect(memoryGame.modal).toBeTruthy();
+        expect(modal).toBeTruthy();
     });
 
     it('should add "flip" to the classList of the first two cards clicked', () => {
-        const firstCard = memoryGame.cards[0];
-        const secondCard = memoryGame.cards[3];
+        const firstCard = cards[0];
+        const secondCard = cards[3];
 
         firstCard.click();
         secondCard.click();
@@ -65,9 +66,9 @@ describe('Cards class', () => {
     });
 
     it('should not add "flip" to the classList of the third card clicked', () => {
-        const firstCard = memoryGame.cards[0];
-        const secondCard = memoryGame.cards[3];
-        const thirdCard = memoryGame.cards[2];
+        const firstCard = cards[0];
+        const secondCard = cards[3];
+        const thirdCard = cards[2];
 
         firstCard.click();
         secondCard.click();
@@ -77,8 +78,8 @@ describe('Cards class', () => {
     });
 
     it('should flip cards back after 1.2sec if not match', () => {
-        const spiderCard = memoryGame.cards[0];
-        const hulkCard = memoryGame.cards[3];
+        const spiderCard = cards[0];
+        const hulkCard = cards[3];
 
         spiderCard.click(); 
         hulkCard.click();
@@ -90,8 +91,8 @@ describe('Cards class', () => {
     });
 
     it('should keep cards flipped after 1.2sec if match', () => {
-        const spiderCard1 = memoryGame.cards[0];
-        const spiderCard2 = memoryGame.cards[1];
+        const spiderCard1 = cards[0];
+        const spiderCard2 = cards[1];
 
         spiderCard1.click();
         spiderCard2.click();
