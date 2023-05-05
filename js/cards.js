@@ -10,6 +10,15 @@ class Cards {
     this.userAttempts = 0;
   }
 
+  init = () => {
+    this.addEvents();
+    this.bindEvents();
+    [...this.cards].forEach((card) => {
+      this.shuffle(card);
+      card.addEventListener('click', this.flip);
+    });
+  }
+
   reset = () => {
     this.firstCard = null;
     this.secondCard = null;
@@ -135,14 +144,7 @@ class Cards {
     this.restart = this.restart.bind(this);
   }
 
-  execute = () => {
-    this.addEvents();
-    this.bindEvents();
-    [...this.cards].forEach((card) => {
-      this.shuffle(card);
-      card.addEventListener('click', this.flip);
-    });
-  }
+
 }
 
 export { Cards };

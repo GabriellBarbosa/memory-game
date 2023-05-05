@@ -43,7 +43,7 @@ describe('Cards class', () => {
         cards = mockElement.querySelectorAll('.memory_card');
         modal = mockElement.querySelector('.modal-bg')
         memoryGame = new Cards(cards, modal);
-        const initMemoryGame = jest.fn(memoryGame.execute);
+        const initMemoryGame = jest.fn(memoryGame.init);
         initMemoryGame();
     });
 

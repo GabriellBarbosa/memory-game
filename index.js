@@ -18,4 +18,4 @@ import { debounce } from './js/debounce.js';
 const cardsNodeList = document.querySelectorAll('.memory_card');
 const modalElement = document.querySelector('.modal-bg')
 const cards = new Cards(cardsNodeList, modalElement);
-cards.execute();
+cards.init();
