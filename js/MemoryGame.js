@@ -1,5 +1,4 @@
 class MemoryGame {
-  // cardsNodeList
   constructor(cardsNodeList, aHtmlElement) {
     this._cards = Array.from(cardsNodeList);
     this.modal = aHtmlElement;
