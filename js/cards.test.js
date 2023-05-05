@@ -55,26 +55,26 @@ describe('Cards class', () => {
     });
 
     it('should add "flip" to the classList of the first two cards clicked', () => {
-        const firstCard = cards[0];
-        const secondCard = cards[3];
+        const spiderCard = cards[0];
+        const hulkCard = cards[3];
 
-        firstCard.click();
-        secondCard.click();
+        spiderCard.click();
+        hulkCard.click();
 
-        expect(Array.from(firstCard.classList)).toContain('flip');
-        expect(Array.from(secondCard.classList)).toContain('flip');
+        expect(Array.from(spiderCard.classList)).toContain('flip');
+        expect(Array.from(hulkCard.classList)).toContain('flip');
     });
 
-    it('should not add "flip" to the classList of the third card clicked', () => {
-        const firstCard = cards[0];
-        const secondCard = cards[3];
-        const thirdCard = cards[2];
+    it('should not add "flip" to the classList of the third card clicked if the firt two not match', () => {
+        const spiderCard = cards[0];
+        const hulkCard1 = cards[3];
+        const hulkCard2 = cards[2];
 
-        firstCard.click();
-        secondCard.click();
-        thirdCard.click();
+        spiderCard.click();
+        hulkCard1.click();
+        hulkCard2.click();
 
-        expect(Array.from(thirdCard.classList)).not.toContain('flip');
+        expect(Array.from(hulkCard2.classList)).not.toContain('flip');
     });
 
     it('should flip cards back after 1.2sec if not match', () => {
