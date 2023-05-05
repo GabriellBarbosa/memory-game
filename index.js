@@ -1,4 +1,4 @@
-import { MemoryGame } from './js/cards.js';
+import { MemoryGame } from './js/MemoryGame.js';
 import { debounce } from './js/debounce.js';
 
 // Tela de aviso: virar o celular

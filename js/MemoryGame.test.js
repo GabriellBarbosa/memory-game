@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { MemoryGame } from "./cards";
+import { MemoryGame } from "./MemoryGame";
 
 jest.useFakeTimers();
 
