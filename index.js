@@ -1,4 +1,4 @@
-import { Cards } from './js/cards.js';
+import { MemoryGame } from './js/cards.js';
 import { debounce } from './js/debounce.js';
 
 // Tela de aviso: virar o celular
@@ -17,5 +17,5 @@ import { debounce } from './js/debounce.js';
 
 const cardsNodeList = document.querySelectorAll('.memory_card');
 const modalElement = document.querySelector('.modal-bg')
-const cards = new Cards(cardsNodeList, modalElement);
+const cards = new MemoryGame(cardsNodeList, modalElement);
 cards.init();

@@ -1,5 +1,4 @@
-// MemoryGame
-class Cards {
+class MemoryGame {
   // cardsNodeList
   constructor(aNodeList, aHtmlElement) {
     this._cards = Array.from(aNodeList);
@@ -145,4 +144,4 @@ class Cards {
   }
 }
 
-export { Cards };
+export { MemoryGame };

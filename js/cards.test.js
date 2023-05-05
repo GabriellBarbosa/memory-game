@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { Cards } from "./cards";
+import { MemoryGame } from "./cards";
 
 jest.useFakeTimers();
 
@@ -42,7 +42,7 @@ describe('Cards class', () => {
         documentSpy.mockReturnValue(mockElement);
         cards = mockElement.querySelectorAll('.memory_card');
         modal = mockElement.querySelector('.modal-bg')
-        memoryGame = new Cards(cards, modal);
+        memoryGame = new MemoryGame(cards, modal);
         jest.fn(memoryGame.init());
     });
 
