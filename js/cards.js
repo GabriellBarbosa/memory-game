@@ -2,7 +2,7 @@
 class Cards {
   // cardsNodeList
   constructor(aNodeList, aHtmlElement) {
-    this.cards = aNodeList;
+    this._cards = Array.from(aNodeList);
     this.modal = aHtmlElement;
     this.cardIsClicked = false;
     this.firstCard;
@@ -13,7 +13,7 @@ class Cards {
   init() {
     this.addEvents();
     this.bindEvents();
-    [...this.cards].forEach((card) => {
+    this._cards.forEach((card) => {
       this.shuffle(card);
       card.addEventListener('click', this.flip);
     });
@@ -82,11 +82,11 @@ class Cards {
   }
 
   gameOver = () => {
-    const flipped = [...this.cards].filter((card) => {
+    const flipped = this._cards.filter((card) => {
       return card.classList.contains('flip');
     });
 
-    if(flipped.length === [...this.cards].length) {
+    if(flipped.length === this._cards.length) {
       this.gameOverMessages();
       this.modal.classList.add('active');
     }
@@ -135,7 +135,7 @@ class Cards {
   };
 
   restart = () => {
-    [...this.cards].forEach((card) => {
+    this._cards.forEach((card) => {
       card.classList.remove('flip');
       this.shuffle(card);
       this.addClickEvent(card);
