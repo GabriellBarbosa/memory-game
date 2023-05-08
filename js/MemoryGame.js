@@ -2,8 +2,8 @@ class MemoryGame {
   constructor(cardsNodeList, aHtmlElement) {
     this._cards = Array.from(cardsNodeList);
     this._modal = aHtmlElement;
-    this.firstCard;
-    this.secondCard;
+    this._firstCard;
+    this._secondCard;
     this.userAttempts = 0;
   }
 
@@ -27,8 +27,8 @@ class MemoryGame {
   }
 
   reset = () => {
-    this.firstCard = null;
-    this.secondCard = null;
+    this._firstCard = null;
+    this._secondCard = null;
   };
 
   addClickEvent = (element) => {
@@ -44,17 +44,17 @@ class MemoryGame {
   // desvira as cartas se não forem iguais
   noMatch = () => {
     setTimeout(() => {
-      this.addClickEvent(this.secondCard);
-      this.firstCard.classList.remove('flip');
-      this.secondCard.classList.remove('flip');
+      this.addClickEvent(this._secondCard);
+      this._firstCard.classList.remove('flip');
+      this._secondCard.classList.remove('flip');
       this.reset();
     }, 1200);
   };
 
   // mantém as cartas viradas se forem iguais
   match = () => {
-    this.removeClickEvent(this.firstCard);
-    this.removeClickEvent(this.secondCard);
+    this.removeClickEvent(this._firstCard);
+    this.removeClickEvent(this._secondCard);
     this.reset();
   };
 
@@ -91,9 +91,9 @@ class MemoryGame {
 
   // verifica se o dataset são iguais
   handleCardsMatch = () => {
-    if (this.secondCard && !this.cardClicked) {
+    if (this._secondCard && !this.cardClicked) {
       this.userAttempts += 1;
-      const datasetMatch = this.firstCard.dataset.card === this.secondCard.dataset.card;
+      const datasetMatch = this._firstCard.dataset.card === this._secondCard.dataset.card;
       if (datasetMatch) {
         this.match();
         this.gameOver();
@@ -106,20 +106,20 @@ class MemoryGame {
   // atribui o valor para as variáveis firstCard e secondCard
   checkCards = (card) => {
     if (!this.cardClicked) {
-      this.firstCard = card;
+      this._firstCard = card;
       this.cardClicked = true;
-      this.removeClickEvent(this.firstCard);
+      this.removeClickEvent(this._firstCard);
     } else {
-      this.secondCard = card;
+      this._secondCard = card;
       this.cardClicked = false;
-      this.removeClickEvent(this.secondCard);
-      this.addClickEvent(this.firstCard);
+      this.removeClickEvent(this._secondCard);
+      this.addClickEvent(this._firstCard);
     }
     this.handleCardsMatch();
   };
 
   flip = ({ currentTarget }) => {
-    const cardIsEmpty = !this.firstCard || !this.secondCard;
+    const cardIsEmpty = !this._firstCard || !this._secondCard;
     if (cardIsEmpty) {
       currentTarget.classList.toggle('flip');
       this.checkCards(currentTarget);
