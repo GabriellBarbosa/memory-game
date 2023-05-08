@@ -78,8 +78,8 @@ class MemoryGame {
     if (this._firstCard && this._secondCard) {
       this.userAttempts += 1;
       if (this._cardsAreEqual()) {
-        this.match();
-        this.gameOver();
+        this._match();
+        this._gameOver();
       } else {
         this.noMatch();
       }
@@ -90,14 +90,13 @@ class MemoryGame {
     return this._firstCard.dataset.card === this._secondCard.dataset.card;
   }
 
-  // mantém as cartas viradas se forem iguais
-  match = () => {
+  _match() {
     this.removeClickEvent(this._firstCard);
     this.removeClickEvent(this._secondCard);
     this.reset();
   };
 
-  gameOver = () => {
+  _gameOver() {
     const flipped = this._cards.filter((card) => {
       return card.classList.contains("flip");
     });
