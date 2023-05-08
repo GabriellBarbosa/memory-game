@@ -55,6 +55,7 @@ class MemoryGame {
   // desvira as cartas se não forem iguais
   noMatch = () => {
     setTimeout(() => {
+      this.addClickEvent(this._firstCard);
       this.addClickEvent(this._secondCard);
       this._firstCard.classList.remove('flip');
       this._secondCard.classList.remove('flip');
@@ -129,7 +130,6 @@ class MemoryGame {
     } else {
       this._secondCard = card;
       this.removeClickEvent(this._secondCard);
-      this.addClickEvent(this._firstCard);
     }
     this.handleCardsMatch();
   };
