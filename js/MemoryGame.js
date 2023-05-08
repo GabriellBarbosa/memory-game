@@ -61,6 +61,11 @@ class MemoryGame {
 
   // atribui o valor para as variáveis firstCard e secondCard
   checkCards = (card) => {
+    this._setCardClicked(card);
+    this.handleCardsMatch();
+  };
+
+  _setCardClicked(card) {
     if (!this._firstCard) {
       this._firstCard = card;
       this.removeClickEvent(this._firstCard);
@@ -68,8 +73,7 @@ class MemoryGame {
       this._secondCard = card;
       this.removeClickEvent(this._secondCard);
     }
-    this.handleCardsMatch();
-  };
+  }
 
   handleCardsMatch = () => {
     if (this._firstCard && this._secondCard) {
