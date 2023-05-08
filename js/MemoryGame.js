@@ -10,8 +10,19 @@ class MemoryGame {
   init() {
     this.addEvents();
     this.bindEvents();
+    this._shuffleCards();
+    this._flipCardOnClick();
+  }
+
+  _shuffleCards() {
+    this._cards.forEach(card => {
+      const randomNumber = Math.ceil(Math.random() * 15);
+      card.style.order = String(randomNumber);
+    });
+  }
+
+  _flipCardOnClick() {
     this._cards.forEach((card) => {
-      this.shuffle(card);
       card.addEventListener('click', this.flip);
     });
   }
@@ -126,11 +137,6 @@ class MemoryGame {
     }
   }
 
-  shuffle = (card) => {
-    const randomNumber = Math.ceil(Math.random() * 15);
-    card.style.order = String(randomNumber);
-  };
-
   restart = () => {
     this._cards.forEach((card) => {
       card.classList.remove('flip');
@@ -140,6 +146,11 @@ class MemoryGame {
     this._modal.classList.remove('active');
     this.userAttempts = 0;
   }
+
+  shuffle = (card) => {
+    const randomNumber = Math.ceil(Math.random() * 15);
+    card.style.order = String(randomNumber);
+  };
 }
 
 export { MemoryGame };
