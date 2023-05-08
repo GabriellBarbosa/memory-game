@@ -61,7 +61,7 @@ class MemoryGame {
 
   _checkCards(card) {
     this._setCardClicked(card);
-    this.handleCardsMatch();
+    this._handleCardsMatch();
   };
 
   _setCardClicked(card) {
@@ -74,7 +74,7 @@ class MemoryGame {
     }
   }
 
-  handleCardsMatch = () => {
+  _handleCardsMatch() {
     if (this._firstCard && this._secondCard) {
       this.userAttempts += 1;
       const datasetMatch =
