@@ -1,7 +1,7 @@
 class MemoryGame {
-  constructor(cardsNodeList, aHtmlElement) {
+  constructor(cardsNodeList, modalHtmlElement) {
     this._cards = Array.from(cardsNodeList);
-    this._modal = aHtmlElement;
+    this._modal = modalHtmlElement;
     this._firstCard;
     this._secondCard;
     this.userAttempts = 0;
