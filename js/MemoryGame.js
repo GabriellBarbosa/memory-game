@@ -129,10 +129,10 @@ class MemoryGame {
     this.handleCardsMatch();
   };
 
-  flip = ({ currentTarget }) => {
+  flip(card) {
     if (!this._firstCard || !this._secondCard) {
-      currentTarget.classList.toggle('flip');
-      this.checkCards(currentTarget);
+      card.currentTarget.classList.toggle('flip');
+      this.checkCards(card.currentTarget);
     }
   }
 
