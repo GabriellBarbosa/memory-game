@@ -1,8 +1,7 @@
 class MemoryGame {
   constructor(cardsNodeList, aHtmlElement) {
     this._cards = Array.from(cardsNodeList);
-    this.modal = aHtmlElement;
-    this.cardIsClicked = false;
+    this._modal = aHtmlElement;
     this.firstCard;
     this.secondCard;
     this.userAttempts = 0;
@@ -18,7 +17,7 @@ class MemoryGame {
   }
 
   addEvents() {
-    const restartButton = this.modal.querySelector('button');
+    const restartButton = this._modal.querySelector('button');
     restartButton.addEventListener('click', this.restart);
   }
 
@@ -61,9 +60,9 @@ class MemoryGame {
 
   gameOverMessages = () => {
     const modalElements = {
-      title: this.modal.querySelector('h2'),
-      message: this.modal.querySelector('p'),
-      record: this.modal.querySelector('span')
+      title: this._modal.querySelector('h2'),
+      message: this._modal.querySelector('p'),
+      record: this._modal.querySelector('span')
     }
 
     const record = window.localStorage.getItem('record');
@@ -86,7 +85,7 @@ class MemoryGame {
 
     if(flipped.length === this._cards.length) {
       this.gameOverMessages();
-      this.modal.classList.add('active');
+      this._modal.classList.add('active');
     }
   }
 
@@ -138,7 +137,7 @@ class MemoryGame {
       this.shuffle(card);
       this.addClickEvent(card);
     });
-    this.modal.classList.remove('active');
+    this._modal.classList.remove('active');
     this.userAttempts = 0;
   }
 }
