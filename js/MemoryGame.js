@@ -102,7 +102,7 @@ class MemoryGame {
 
   // verifica se o dataset são iguais
   handleCardsMatch = () => {
-    if (this._secondCard && !this.cardClicked) {
+    if (this._firstCard && this._secondCard) {
       this.userAttempts += 1;
       const datasetMatch = this._firstCard.dataset.card === this._secondCard.dataset.card;
       if (datasetMatch) {
@@ -123,13 +123,11 @@ class MemoryGame {
 
   // atribui o valor para as variáveis firstCard e secondCard
   checkCards = (card) => {
-    if (!this.cardClicked) {
+    if (!this._firstCard) {
       this._firstCard = card;
-      this.cardClicked = true;
       this.removeClickEvent(this._firstCard);
     } else {
       this._secondCard = card;
-      this.cardClicked = false;
       this.removeClickEvent(this._secondCard);
       this.addClickEvent(this._firstCard);
     }
