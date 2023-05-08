@@ -114,6 +114,13 @@ class MemoryGame {
     }
   };
 
+  flip(card) {
+    if (!this._firstCard || !this._secondCard) {
+      card.currentTarget.classList.toggle('flip');
+      this.checkCards(card.currentTarget);
+    }
+  }
+
   // atribui o valor para as variáveis firstCard e secondCard
   checkCards = (card) => {
     if (!this.cardClicked) {
@@ -128,13 +135,6 @@ class MemoryGame {
     }
     this.handleCardsMatch();
   };
-
-  flip(card) {
-    if (!this._firstCard || !this._secondCard) {
-      card.currentTarget.classList.toggle('flip');
-      this.checkCards(card.currentTarget);
-    }
-  }
 
   restart = () => {
     this._cards.forEach((card) => {
