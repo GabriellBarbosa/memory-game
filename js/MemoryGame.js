@@ -77,9 +77,7 @@ class MemoryGame {
   _handleCardsMatch() {
     if (this._firstCard && this._secondCard) {
       this.userAttempts += 1;
-      const datasetMatch =
-        this._firstCard.dataset.card === this._secondCard.dataset.card;
-      if (datasetMatch) {
+      if (this._cardsAreEqual()) {
         this.match();
         this.gameOver();
       } else {
@@ -87,6 +85,10 @@ class MemoryGame {
       }
     }
   };
+
+  _cardsAreEqual() {
+    return this._firstCard.dataset.card === this._secondCard.dataset.card;
+  }
 
   // mantém as cartas viradas se forem iguais
   match = () => {
