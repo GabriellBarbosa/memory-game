@@ -130,8 +130,7 @@ class MemoryGame {
   };
 
   flip = ({ currentTarget }) => {
-    const cardIsEmpty = !this._firstCard || !this._secondCard;
-    if (cardIsEmpty) {
+    if (!this._firstCard || !this._secondCard) {
       currentTarget.classList.toggle('flip');
       this.checkCards(currentTarget);
     }
