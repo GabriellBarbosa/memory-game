@@ -55,12 +55,11 @@ class MemoryGame {
   flip(card) {
     if (!this._firstCard || !this._secondCard) {
       card.currentTarget.classList.toggle("flip");
-      this.checkCards(card.currentTarget);
+      this._checkCards(card.currentTarget);
     }
   }
 
-  // atribui o valor para as variáveis firstCard e secondCard
-  checkCards = (card) => {
+  _checkCards(card) {
     this._setCardClicked(card);
     this.handleCardsMatch();
   };
