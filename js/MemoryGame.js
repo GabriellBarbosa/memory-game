@@ -73,12 +73,12 @@ class MemoryGame {
 
   _checkCards(firstCard, secondCard) {
     if (firstCard && secondCard) {
+      this.userAttempts += 1;
       this._handleCardsMatch();
     }
   }
 
   _handleCardsMatch() {
-    this.userAttempts += 1;
     if (this._firstCard.dataset.card === this._secondCard.dataset.card) {
       this._match();
       this._gameOver();
