@@ -61,7 +61,9 @@ class MemoryGame {
 
   _checkCards(card) {
     this._setCardClicked(card);
-    this._handleCardsMatch();
+    if (this._firstCard && this._secondCard) {
+      this._handleCardsMatch();
+    }
   };
 
   _setCardClicked(card) {
@@ -75,7 +77,6 @@ class MemoryGame {
   }
 
   _handleCardsMatch() {
-    if (this._firstCard && this._secondCard) {
       this.userAttempts += 1;
       if (this._cardsAreEqual()) {
         this._match();
@@ -83,7 +84,6 @@ class MemoryGame {
       } else {
         this.noMatch();
       }
-    }
   };
 
   _cardsAreEqual() {
