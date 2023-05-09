@@ -55,16 +55,12 @@ class MemoryGame {
   flip(card) {
     if (!this._firstCard || !this._secondCard) {
       card.currentTarget.classList.toggle("flip");
-      const { firstCard, secondCard } = this._setCardClicked(card.currentTarget);
+      const { firstCard, secondCard } = this._setCardClicked(
+        card.currentTarget
+      );
       this._checkCards(firstCard, secondCard);
     }
   }
-
-  _checkCards(firstCard, secondCard) {
-    if (firstCard && secondCard) {
-      this._handleCardsMatch();
-    }
-  };
 
   _setCardClicked(card) {
     if (!this._firstCard) {
@@ -77,21 +73,27 @@ class MemoryGame {
     return { firstCard: this._firstCard, secondCard: this._secondCard };
   }
 
+  _checkCards(firstCard, secondCard) {
+    if (firstCard && secondCard) {
+      this._handleCardsMatch();
+    }
+  }
+
   _handleCardsMatch() {
-      this.userAttempts += 1;
-      if (this._firstCard.dataset.card === this._secondCard.dataset.card) {
-        this._match();
-        this._gameOver();
-      } else {
-        this.noMatch();
-      }
-  };
+    this.userAttempts += 1;
+    if (this._firstCard.dataset.card === this._secondCard.dataset.card) {
+      this._match();
+      this._gameOver();
+    } else {
+      this.noMatch();
+    }
+  }
 
   _match() {
     this.removeClickEvent(this._firstCard);
     this.removeClickEvent(this._secondCard);
     this.reset();
-  };
+  }
 
   _gameOver() {
     const flipped = this._cards.filter((card) => {
@@ -102,7 +104,7 @@ class MemoryGame {
       this.gameOverMessages();
       this._modal.classList.add("active");
     }
-  };
+  }
 
   gameOverMessages = () => {
     const modalElements = {
