@@ -54,7 +54,7 @@ class MemoryGame {
 
   flip(card) {
     if (!this._firstCard || !this._secondCard) {
-      card.currentTarget.classList.toggle("flip");
+      card.currentTarget.classList.add("flip");
       const cardsClicked = this._setCardClicked(card.currentTarget);
       this._checkCards(cardsClicked.first, cardsClicked.second);
     }
