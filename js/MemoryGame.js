@@ -78,17 +78,13 @@ class MemoryGame {
 
   _handleCardsMatch() {
       this.userAttempts += 1;
-      if (this._cardsAreEqual()) {
+      if (this._firstCard.dataset.card === this._secondCard.dataset.card) {
         this._match();
         this._gameOver();
       } else {
         this.noMatch();
       }
   };
-
-  _cardsAreEqual() {
-    return this._firstCard.dataset.card === this._secondCard.dataset.card;
-  }
 
   _match() {
     this.removeClickEvent(this._firstCard);
