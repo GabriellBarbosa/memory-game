@@ -94,14 +94,17 @@ class MemoryGame {
   }
 
   _gameOver() {
-    const flipped = this._cards.filter((card) => {
-      return card.classList.contains("flip");
-    });
-
-    if (flipped.length === this._cards.length) {
+    if (this._areAllCardsFlipped()) {
       this.gameOverMessages();
       this._modal.classList.add("active");
     }
+  }
+
+  _areAllCardsFlipped() {
+    const flippedCards = this._cards.filter((card) => {
+      return card.classList.contains("flip");
+    });
+    return flippedCards.length === this._cards.length;
   }
 
   gameOverMessages = () => {
