@@ -81,7 +81,6 @@ class MemoryGame {
   _handleCardsMatch() {
     if (this._firstCard.dataset.card === this._secondCard.dataset.card) {
       this._match();
-      this._gameOver();
     } else {
       this.noMatch();
     }
@@ -91,6 +90,7 @@ class MemoryGame {
     this.removeClickEvent(this._firstCard);
     this.removeClickEvent(this._secondCard);
     this.reset();
+    this._gameOver();
   }
 
   _gameOver() {
