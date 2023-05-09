@@ -82,7 +82,7 @@ class MemoryGame {
     if (this._firstCard.dataset.card === this._secondCard.dataset.card) {
       this._match();
     } else {
-      this.noMatch();
+      this._noMatch();
     }
   }
 
@@ -131,8 +131,7 @@ class MemoryGame {
     };
   }
 
-  // desvira as cartas se não forem iguais
-  noMatch = () => {
+  _noMatch() {
     setTimeout(() => {
       this.addClickEvent(this._firstCard);
       this.addClickEvent(this._secondCard);
