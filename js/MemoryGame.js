@@ -95,7 +95,7 @@ class MemoryGame {
 
   _gameOver() {
     if (this._areAllCardsFlipped()) {
-      this._gameOverMessages();
+      this._setGameOverMessages();
       this._modal.classList.add("active");
     }
   }
@@ -107,7 +107,7 @@ class MemoryGame {
     return flippedCards.length === this._cards.length;
   }
 
-  _gameOverMessages() {
+  _setGameOverMessages() {
     const modalElements = {
       title: this._modal.querySelector("h2"),
       message: this._modal.querySelector("p"),
