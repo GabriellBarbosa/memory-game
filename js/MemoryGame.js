@@ -55,13 +55,13 @@ class MemoryGame {
   flip(card) {
     if (!this._firstCard || !this._secondCard) {
       card.currentTarget.classList.toggle("flip");
-      this._checkCards(card.currentTarget);
+      const { firstCard, secondCard } = this._setCardClicked(card.currentTarget);
+      this._checkCards(firstCard, secondCard);
     }
   }
 
-  _checkCards(card) {
-    this._setCardClicked(card);
-    if (this._firstCard && this._secondCard) {
+  _checkCards(firstCard, secondCard) {
+    if (firstCard && secondCard) {
       this._handleCardsMatch();
     }
   };
@@ -74,6 +74,7 @@ class MemoryGame {
       this._secondCard = card;
       this.removeClickEvent(this._secondCard);
     }
+    return { firstCard: this._firstCard, secondCard: this._secondCard };
   }
 
   _handleCardsMatch() {
