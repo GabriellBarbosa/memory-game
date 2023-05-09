@@ -108,11 +108,7 @@ class MemoryGame {
   }
 
   _setGameOverMessages() {
-    const modalElements = {
-      title: this._modal.querySelector("h2"),
-      message: this._modal.querySelector("p"),
-      record: this._modal.querySelector("span"),
-    };
+    const modalElements = this._gameOverModalElements();
 
     const record = window.localStorage.getItem("record");
     if (!record || this.userAttempts < record) {
@@ -126,6 +122,14 @@ class MemoryGame {
 
     modalElements.message.innerText = `${this.userAttempts} tentativas`;
   };
+
+  _gameOverModalElements() {
+    return {
+      title: this._modal.querySelector("h2"),
+      message: this._modal.querySelector("p"),
+      record: this._modal.querySelector("span"),
+    };
+  }
 
   // desvira as cartas se não forem iguais
   noMatch = () => {
