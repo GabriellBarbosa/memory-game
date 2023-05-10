@@ -108,14 +108,21 @@ class MemoryGame {
   }
 
   _setGameOverMessages() {
-    const record = window.localStorage.getItem("record");
-    if (!record || this.userAttempts < record) {
-      this._breadCake('Parabéns, você bateu o seu recorde!!', `Recorde: ${this.userAttempts}`);
+    if (this._recordBeaten()) {
+      this._breadCake(
+        "Parabéns, você bateu o seu recorde!!",
+        `Recorde: ${this.userAttempts}`
+      );
       window.localStorage.setItem("record", this.userAttempts);
     } else {
-      this._breadCake('Game Over, tente novamente!', `Recorde: ${record}`);
+      this._breadCake("Game Over, tente novamente!", `Recorde: ${record}`);
     }
-  };
+  }
+
+  _recordBeaten() {
+    const record = window.localStorage.getItem("record");
+    return !record || this.userAttempts < record;
+  }
 
   _breadCake(title, record) {
     const modalElements = this._gameOverModalElements();
@@ -140,7 +147,7 @@ class MemoryGame {
       this._secondCard.classList.remove("flip");
       this.reset();
     }, 1200);
-  };
+  }
 
   restart = () => {
     this._cards.forEach((card) => {
