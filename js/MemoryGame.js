@@ -86,6 +86,16 @@ class MemoryGame {
     }
   }
 
+  _noMatch() {
+    setTimeout(() => {
+      this.addClickEvent(this._firstCard);
+      this.addClickEvent(this._secondCard);
+      this._firstCard.classList.remove("flip");
+      this._secondCard.classList.remove("flip");
+      this.reset();
+    }, 1200);
+  }
+
   _match() {
     this.removeClickEvent(this._firstCard);
     this.removeClickEvent(this._secondCard);
@@ -137,16 +147,6 @@ class MemoryGame {
       message: this._modal.querySelector("p"),
       record: this._modal.querySelector("span"),
     };
-  }
-
-  _noMatch() {
-    setTimeout(() => {
-      this.addClickEvent(this._firstCard);
-      this.addClickEvent(this._secondCard);
-      this._firstCard.classList.remove("flip");
-      this._secondCard.classList.remove("flip");
-      this.reset();
-    }, 1200);
   }
 
   restart = () => {
