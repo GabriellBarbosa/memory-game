@@ -90,12 +90,12 @@ class MemoryGame {
     this.removeClickEvent(this._firstCard);
     this.removeClickEvent(this._secondCard);
     this.reset();
-    if (this._areAllCardsFlipped()) {
+    if (this._allCardsAreFlipped()) {
       this._gameOver();
     }
   }
 
-  _areAllCardsFlipped() {
+  _allCardsAreFlipped() {
     const flippedCards = this._cards.filter((card) => {
       return card.classList.contains("flip");
     });
