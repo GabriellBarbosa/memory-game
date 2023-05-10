@@ -146,11 +146,6 @@ class MemoryGame {
     };
   }
 
-  shuffle = (card) => {
-    const randomNumber = Math.ceil(Math.random() * 15);
-    card.style.order = String(randomNumber);
-  };
-
   _addClickEvent(card) {
     card.addEventListener("click", this.flip);
   }
