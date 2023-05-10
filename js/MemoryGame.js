@@ -101,7 +101,7 @@ class MemoryGame {
   _resetClickedCards() {
     this._firstCard = null;
     this._secondCard = null;
-  };
+  }
 
   _allCardsAreFlipped() {
     const flippedCards = this._cards.filter((card) => {
@@ -123,7 +123,10 @@ class MemoryGame {
       );
       window.localStorage.setItem("record", this._attempts);
     } else {
-      this._setMessages("Game Over, tente novamente!", `Recorde: ${record}`);
+      this._setMessages(
+        "Game Over, tente novamente!",
+        `Recorde: ${localStorage.getItem("record")}`
+      );
     }
   }
 
