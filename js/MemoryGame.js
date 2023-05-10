@@ -30,7 +30,7 @@ class MemoryGame {
 
   _flipCardOnClick() {
     this._cards.forEach((card) => {
-      card.addEventListener("click", this.flip);
+      card.addEventListener("click", this._flip);
     });
   }
 
@@ -40,11 +40,11 @@ class MemoryGame {
   }
 
   bindEvents() {
-    this.flip = this.flip.bind(this);
+    this._flip = this._flip.bind(this);
     this.restart = this.restart.bind(this);
   }
 
-  flip(card) {
+  _flip(card) {
     if (!this._firstCard || !this._secondCard) {
       card.currentTarget.classList.add("flip");
       const cardsClicked = this._setCardClicked(card.currentTarget);
@@ -147,11 +147,11 @@ class MemoryGame {
   }
 
   _addClickEvent(card) {
-    card.addEventListener("click", this.flip);
+    card.addEventListener("click", this._flip);
   }
 
   _removeClickEvent(card) {
-    card.removeEventListener("click", this.flip);
+    card.removeEventListener("click", this._flip);
   }
 
   _unflipCards() {
