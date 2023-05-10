@@ -44,11 +44,6 @@ class MemoryGame {
     this.restart = this.restart.bind(this);
   }
 
-  reset = () => {
-    this._firstCard = null;
-    this._secondCard = null;
-  };
-
   flip(card) {
     if (!this._firstCard || !this._secondCard) {
       card.currentTarget.classList.add("flip");
@@ -89,18 +84,23 @@ class MemoryGame {
       this._addClickEvent(this._secondCard);
       this._firstCard.classList.remove("flip");
       this._secondCard.classList.remove("flip");
-      this.reset();
+      this._resetClickedCards();
     }, 1200);
   }
 
   _match() {
     this._removeClickEvent(this._firstCard);
     this._removeClickEvent(this._secondCard);
-    this.reset();
+    this._resetClickedCards();
     if (this._allCardsAreFlipped()) {
       this._gameOver();
     }
   }
+
+  _resetClickedCards() {
+    this._firstCard = null;
+    this._secondCard = null;
+  };
 
   _allCardsAreFlipped() {
     const flippedCards = this._cards.filter((card) => {
