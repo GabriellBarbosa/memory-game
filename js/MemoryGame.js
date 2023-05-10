@@ -7,18 +7,23 @@ class MemoryGame {
     this.userAttempts = 0;
   }
 
-  restart() {
-    this._unflipCards();
-    this._modal.classList.remove("active");
-    this.userAttempts = 0;
-    this.init();
-  }
-
   init() {
-    this.addEvents();
-    this.bindEvents();
+    this._restartOnClick();
     this._shuffleCards();
     this._flipCardOnClick();
+  }
+
+  _restartOnClick() {
+    const restartButton = this._modal.querySelector("button");
+    restartButton.addEventListener("click", this._restart);
+  }
+
+  _restart() {
+    this._unflipCards();
+    this._shuffleCards();
+    this._flipCardOnClick();
+    this.userAttempts = 0;
+    this._modal.classList.remove("active");
   }
 
   _shuffleCards() {
@@ -32,16 +37,6 @@ class MemoryGame {
     this._cards.forEach((card) => {
       card.addEventListener("click", this._flip);
     });
-  }
-
-  addEvents() {
-    const restartButton = this._modal.querySelector("button");
-    restartButton.addEventListener("click", this.restart);
-  }
-
-  bindEvents() {
-    this._flip = this._flip.bind(this);
-    this.restart = this.restart.bind(this);
   }
 
   _flip(card) {
