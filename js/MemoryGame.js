@@ -109,13 +109,16 @@ class MemoryGame {
 
   _setGameOverMessages() {
     if (this._recordBeaten()) {
-      this._breadCake(
+      this._setMessages(
         "Parabéns, você bateu o seu recorde!!",
         `Recorde: ${this.userAttempts}`
       );
       window.localStorage.setItem("record", this.userAttempts);
     } else {
-      this._breadCake("Game Over, tente novamente!", `Recorde: ${record}`);
+      this._setMessages(
+        "Game Over, tente novamente!",
+        `Recorde: ${record}`
+      );
     }
   }
 
@@ -124,7 +127,7 @@ class MemoryGame {
     return !record || this.userAttempts < record;
   }
 
-  _breadCake(title, record) {
+  _setMessages(title, record) {
     const modalElements = this._gameOverModalElements();
     modalElements.title.innerText = title;
     modalElements.record.innerText = record;
