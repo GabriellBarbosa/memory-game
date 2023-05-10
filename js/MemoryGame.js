@@ -108,20 +108,21 @@ class MemoryGame {
   }
 
   _setGameOverMessages() {
-    const modalElements = this._gameOverModalElements();
-
     const record = window.localStorage.getItem("record");
     if (!record || this.userAttempts < record) {
+      this._breadCake('Parabéns, você bateu o seu recorde!!', `Recorde: ${this.userAttempts}`);
       window.localStorage.setItem("record", this.userAttempts);
-      modalElements.title.innerText = "Parabéns, você bateu o seu recorde!!";
-      modalElements.record.innerText = `Recorde: ${this.userAttempts}`;
     } else {
-      modalElements.title.innerText = "Game Over, tente novamente!";
-      modalElements.record.innerText = `Recorde: ${record}`;
+      this._breadCake('Game Over, tente novamente!', `Recorde: ${record}`);
     }
-
-    modalElements.message.innerText = `${this.userAttempts} tentativas`;
   };
+
+  _breadCake(title, record) {
+    const modalElements = this._gameOverModalElements();
+    modalElements.title.innerText = title;
+    modalElements.record.innerText = record;
+    modalElements.message.innerText = `${this.userAttempts} tentativas`;
+  }
 
   _gameOverModalElements() {
     return {
