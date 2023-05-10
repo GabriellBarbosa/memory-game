@@ -47,11 +47,6 @@ class MemoryGame {
     return element;
   };
 
-  removeClickEvent = (element) => {
-    element.removeEventListener("click", this.flip);
-    return element;
-  };
-
   flip(card) {
     if (!this._firstCard || !this._secondCard) {
       card.currentTarget.classList.add("flip");
@@ -63,10 +58,10 @@ class MemoryGame {
   _setCardClicked(card) {
     if (!this._firstCard) {
       this._firstCard = card;
-      this.removeClickEvent(this._firstCard);
+      this._removeClickEvent(this._firstCard);
     } else {
       this._secondCard = card;
-      this.removeClickEvent(this._secondCard);
+      this._removeClickEvent(this._secondCard);
     }
     return { first: this._firstCard, second: this._secondCard };
   }
@@ -97,8 +92,8 @@ class MemoryGame {
   }
 
   _match() {
-    this.removeClickEvent(this._firstCard);
-    this.removeClickEvent(this._secondCard);
+    this._removeClickEvent(this._firstCard);
+    this._removeClickEvent(this._secondCard);
     this.reset();
     if (this._allCardsAreFlipped()) {
       this._gameOver();
@@ -162,6 +157,10 @@ class MemoryGame {
   shuffle = (card) => {
     const randomNumber = Math.ceil(Math.random() * 15);
     card.style.order = String(randomNumber);
+  };
+
+  _removeClickEvent(element) {
+    element.removeEventListener("click", this.flip);
   };
 }
 
