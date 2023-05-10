@@ -4,7 +4,7 @@ class MemoryGame {
     this._modal = modalHtmlElement;
     this._firstCard;
     this._secondCard;
-    this.userAttempts = 0;
+    this._attempts = 0;
     this._bindEvents();
   }
 
@@ -28,7 +28,7 @@ class MemoryGame {
     this._unflipCards();
     this._shuffleCards();
     this._flipCardOnClick();
-    this.userAttempts = 0;
+    this._attempts = 0;
     this._modal.classList.remove("active");
   }
 
@@ -66,7 +66,7 @@ class MemoryGame {
 
   _checkCards(firstCard, secondCard) {
     if (firstCard && secondCard) {
-      this.userAttempts += 1;
+      this._attempts += 1;
       this._handleCardsMatch();
     }
   }
@@ -119,9 +119,9 @@ class MemoryGame {
     if (this._recordBeaten()) {
       this._setMessages(
         "Parabéns, você bateu o seu recorde!!",
-        `Recorde: ${this.userAttempts}`
+        `Recorde: ${this._attempts}`
       );
-      window.localStorage.setItem("record", this.userAttempts);
+      window.localStorage.setItem("record", this._attempts);
     } else {
       this._setMessages("Game Over, tente novamente!", `Recorde: ${record}`);
     }
@@ -129,14 +129,14 @@ class MemoryGame {
 
   _recordBeaten() {
     const record = window.localStorage.getItem("record");
-    return !record || this.userAttempts < record;
+    return !record || this._attempts < record;
   }
 
   _setMessages(title, record) {
     const modalElements = this._gameOverModalElements();
     modalElements.title.innerText = title;
     modalElements.record.innerText = record;
-    modalElements.message.innerText = `${this.userAttempts} tentativas`;
+    modalElements.message.innerText = `${this._attempts} tentativas`;
   }
 
   _gameOverModalElements() {

@@ -132,6 +132,6 @@ describe('Cards class', () => {
         spiderCard.click();
         hulkCard.click();
 
-        expect(memoryGame.userAttempts).toBe(3);
+        expect(memoryGame._attempts).toBe(3);
     });
 });
