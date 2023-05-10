@@ -90,13 +90,8 @@ class MemoryGame {
     this.removeClickEvent(this._firstCard);
     this.removeClickEvent(this._secondCard);
     this.reset();
-    this._gameOver();
-  }
-
-  _gameOver() {
     if (this._areAllCardsFlipped()) {
-      this._setGameOverMessages();
-      this._modal.classList.add("active");
+      this._gameOver();
     }
   }
 
@@ -107,6 +102,11 @@ class MemoryGame {
     return flippedCards.length === this._cards.length;
   }
 
+  _gameOver() {
+    this._setGameOverMessages();
+    this._modal.classList.add("active");
+  }
+
   _setGameOverMessages() {
     if (this._recordBeaten()) {
       this._setMessages(
@@ -115,10 +115,7 @@ class MemoryGame {
       );
       window.localStorage.setItem("record", this.userAttempts);
     } else {
-      this._setMessages(
-        "Game Over, tente novamente!",
-        `Recorde: ${record}`
-      );
+      this._setMessages("Game Over, tente novamente!", `Recorde: ${record}`);
     }
   }
 
