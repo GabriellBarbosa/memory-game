@@ -11,11 +11,6 @@ beforeAll(() => {
     documentSpy = jest.spyOn(document, 'querySelectorAll');
 });
 
-/* 
-====REMINDERS====
-cards should be private (try to test with cardsNodeList)
-*/
-
 describe('Cards class', () => {
     let cards;
     let modal;
