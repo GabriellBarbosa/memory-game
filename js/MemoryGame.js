@@ -5,6 +5,12 @@ class MemoryGame {
     this._firstCard;
     this._secondCard;
     this.userAttempts = 0;
+    this._bindEvents();
+  }
+
+  _bindEvents() {
+    this._flip = this._flip.bind(this);
+    this._restart = this._restart.bind(this);
   }
 
   init() {
