@@ -17,5 +17,5 @@ import { debounce } from './js/debounce.js';
 
 const cardsNodeList = document.querySelectorAll('.memory_card');
 const modalElement = document.querySelector('.modal-bg')
-const cards = new MemoryGame(cardsNodeList, modalElement);
-cards.init();
+const memoryGame = new MemoryGame(cardsNodeList, modalElement);
+memoryGame.init();
