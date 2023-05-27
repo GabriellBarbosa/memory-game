@@ -45,10 +45,10 @@ class MemoryGame {
     });
   }
 
-  _flip(card) {
+  _flip(event) {
     if (!this._firstCard || !this._secondCard) {
-      card.currentTarget.classList.add("flip");
-      const cardsClicked = this._setCardClicked(card.currentTarget);
+      event.currentTarget.classList.add("flip");
+      const cardsClicked = this._setCardClicked(event.currentTarget);
       this._checkCards(cardsClicked.first, cardsClicked.second);
     }
   }
